@@ -1,10 +1,9 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
-RUN rm -f /etc/apache2/mods-enabled/mpm_*.load \
-    && rm -f /etc/apache2/mods-enabled/mpm_*.conf \
-    && a2enmod mpm_prefork \
-    && docker-php-ext-install mysqli
+RUN docker-php-ext-install mysqli
 
-COPY . /var/www/html/
+WORKDIR /app
 
-EXPOSE 80
+COPY . .
+
+CMD php -S 0.0.0.0:${PORT:-8080} -t .
