@@ -3,7 +3,7 @@ $host = getenv("MYSQLHOST");
 $port = getenv("MYSQLPORT");
 $user = getenv("MYSQLUSER");
 $password = getenv("MYSQLPASSWORD");
-$database = getenv("MYSQLDATABASE");
+$database = getenv("MYSQLDATABASE") ?: getenv("MYSQL_DATABASE");
 
 if (!$host || !$port || !$user || !$database) {
     die("Missing database environment variables.");
