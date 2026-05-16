@@ -3,9 +3,13 @@ $host = getenv("MYSQLHOST");
 $port = getenv("MYSQLPORT");
 $user = getenv("MYSQLUSER");
 $password = getenv("MYSQLPASSWORD");
-$database = getenv("MYSQLDATABASE"); // ✅ use Railway DB
+$database = getenv("MYSQLDATABASE");
 
-$conn = mysqli_connect($host, $user, $password, $database, $port);
+if (!$host || !$port || !$user || !$database) {
+    die("Missing database environment variables.");
+}
+
+$conn = mysqli_connect($host, $user, $password, $database, (int)$port);
 
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
