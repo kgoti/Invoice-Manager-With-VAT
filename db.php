@@ -3,7 +3,7 @@ $host = getenv("MYSQLHOST");
 $port = getenv("MYSQLPORT");
 $user = getenv("MYSQLUSER");
 $password = getenv("MYSQLPASSWORD");
-$database = "invoice_manager"; // force correct DB
+$database = getenv("MYSQLDATABASE"); // ✅ use Railway DB
 
 $conn = mysqli_connect($host, $user, $password, $database, $port);
 
